@@ -40,7 +40,7 @@ cargo run -- client 127.0.0.1:9000
 
 ```
 
-## Limitations — and what I would do next
+## Limitations/What to do next
 - **Key derived from a passphrase with SHA-256.** A real system would use a slow
   KDF (Argon2) or, better, a key exchange (e.g. X25519 / the Noise protocol) so
   the parties don't need a pre-shared secret.
