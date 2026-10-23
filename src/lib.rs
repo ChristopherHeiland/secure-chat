@@ -116,6 +116,7 @@ impl SecureChannel {
     /// Encrypts a message and writes it to a stream (e.g. a TcpStream).
     pub fn send<W: Write>(&self, writer: &mut W, message: &str) -> Result<(), ChatError> {
         let frame = self.seal(message);
+        eprintln!("[encrypted] {:02x?}", frame);
         if frame.len() > MAX_FRAME_LEN {
             return Err(ChatError::FrameTooLarge(frame.len()));
         }
