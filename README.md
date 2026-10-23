@@ -43,9 +43,9 @@ cargo run -- client 127.0.0.1:9000
 
 Captured with the application Wireshark on the loopback interface while sending `hello world`.
 The bytes printed by the program match the bytes on the wire exactly, and the
-plaintext never appears in the traffic :D. 
+plaintext never appears in the traffic. 
 
-![Wireshark capture](docs/Wireshark.PNG)
+![Wireshark capture](Wireshark.PNG)
 
 ## Limitations/What to do next
 - **Key derived from a passphrase with SHA-256.** A real system would use a slow
