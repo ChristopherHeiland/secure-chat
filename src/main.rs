@@ -4,7 +4,7 @@
 //!   SECURE_CHAT_KEY=passphrase secure-chat server 0.0.0.0:9000
 //!   SECURE_CHAT_KEY=passphrase secure-chat client 127.0.0.1:9000
 
-use secure_chat::SecureChannel;
+use secure_chat::{ChatError, SecureChannel};
 use std::env;
 use std::io::{self, BufRead};
 use std::net::{TcpListener, TcpStream};
@@ -68,6 +68,10 @@ fn chat(stream: TcpStream, channel: Arc<SecureChannel>) -> Result<(), Box<dyn st
                 Ok(None) => {
                     println!("Peer disconnected.");
                     process::exit(0);
+                }
+                Err(ChatError::Io(e)) => {
+                    eprintln!("Connection lost: {e}");
+                    process::exit(1);
                 }
                 Err(e) => {
                     eprintln!("Rejected message: {e}");
